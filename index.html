@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noolukunta Village</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+html{scroll-behavior:smooth;}
+
+.section{
+  min-height:100vh;
+  padding:90px 20px 60px;
+  text-align:center;
+}
+
+/* ===== MENU ===== */
+.menu-btn{
+  position:fixed;
+  right:20px;
+  top:20px;
+  font-size:28px;
+  background:black;
+  color:white;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  z-index:1000;
+}
+
+.menu{
+  display:none;
+  position:fixed;
+  right:20px;
+  top:70px;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+.menu p{
+  padding:6px 10px;
+  cursor:pointer;
+}
+
+.menu p:hover{background:#eee;}
+
+/* ===== COLORS ===== */
+.home{background:rgb(166, 100, 160);color:white;}
+.views{background:rgb(166, 100, 160);color:white;}
+.subpage{background:rgb(166, 100, 160);color:white;}
+.map{background:rgb(166, 100, 160);color:white;}
+.support{background:rgb(166, 100, 160);color:white;}
+
+.big{
+  font-size:64px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-shadow:2px 2px 0 #000,4px 4px 0 #333,6px 6px 10px rgba(0,0,0,0.5);
+}
+
+.profile{margin-top:25px;}
+.profile img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid white;
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+/* ===== VIEW CARDS ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:22px;
+  margin-top:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.9);
+  padding:14px;
+  border-radius:14px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+  color:black;
+}
+
+.card img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+/* ===== IMAGE FRAMES ===== */
+.frame-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-top:30px;
+}
+
+.frame{
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.25);
+  color:black;
+}
+
+.frame img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ===== MAP ===== */
+.map-box{
+  width:70%;
+  margin:25px auto;
+}
+
+/* ===== MODAL ===== */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.modal img{
+  width:60%;
+  max-width:520px;
+  border-radius:10px;
+}
+
+.close{
+  position:absolute;
+  top:30px;
+  right:40px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== STARS ===== */
+.stars{
+  font-size:40px;
+  cursor:pointer;
+  color:#ccc;
+  margin-top:15px;
+}
+
+.stars span.active{color:gold;}
+
+.signature{
+  margin-top:40px;
+  font-size:28px;
+  font-weight:bold;
+}
+
+/* clickable links */
+.contact-link{
+  color:yellow;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.contact-link:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu" id="menu">
+<p onclick="scrollToSection('home')">Home</p>
+<p onclick="scrollToSection('views')">Views</p>
+<p onclick="scrollToSection('mapSection')">Map</p>
+<p onclick="scrollToSection('aboutVillage')">About</p>
+</div>
+
+<!-- HOME -->
+<section class="section home" id="home">
+<h2>Welcome to</h2>
+<div class="big">NOOLUKUNTA</div>
+
+<div class="profile">
+<img src="C:\Users\prash\OneDrive\Pictures\Princephoto\prashuu.jpeg">
+<h3>Prashanth</h3>
+<p>Creator of Noolukunta village information website.</p>
+</div>
+</section>
+
+<!-- VIEWS -->
+<section class="section views" id="views">
+<h1>Village Views</h1>
+<div class="grid">
+<div class="card" onclick="openPage('school')">
+<img src="C:\Users\prash\OneDrive\Pictures\Princephoto\img6.jpeg">
+<h3>School</h3>
+</div>
+<div class="card" onclick="openPage('temple')">
+<img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 8.20.13 PM.jpeg">
+<h3>Temple</h3>
+</div>
+<div class="card" onclick="openPage('water')">
+<img src="C:\Users\prash\OneDrive\Pictures\Princephoto\bore1.jpeg">
+<h3>Water</h3>
+</div>
+<div class="card" onclick="openPage('mapSection')">
+<img src="C:\Users\prash\OneDrive\Pictures\Princephoto\img3.jpeg">
+<h3>Map</h3>
+</div>
+</div>
+</section>
+
+<!-- SCHOOL -->
+<section class="section subpage" id="school">
+<h1>School</h1>
+<div class="frame-grid">
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\img2.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\img6.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 7.20.20 PM.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\img5.jpeg" onclick="showImg(this)"></div>
+</div>
+</section>
+
+<!-- TEMPLE -->
+<section class="section subpage" id="temple">
+<h1>Temple</h1>
+<div class="frame-grid">
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 8.20.13 PM.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 7.20.13 PM.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 7.20.14 PM.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\krishna.jpg" onclick="showImg(this)"></div>
+</div>
+</section>
+
+<!-- WATER -->
+<section class="section subpage" id="water">
+<h1>Water Resources</h1>
+<div class="frame-grid">
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 8.06.19 PM.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\WhatsApp Image 2026-02-23 at 8.06.20 PM.jpeg"onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\bore1.jpeg" onclick="showImg(this)"></div>
+<div class="frame"><img src="C:\Users\prash\OneDrive\Pictures\Princephoto\bore.jpeg" onclick="showImg(this)"></div>
+</div>
+</section>
+
+<!-- MAP -->
+<section class="section map" id="mapSection">
+<h1>Village Location</h1>
+<div class="map-box">
+<iframe width="100%" height="320" style="border:0;"
+src="https://www.google.com/maps?q=Noolukunta&output=embed"></iframe>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="section support" id="aboutVillage">
+<h1>About Noolukunta</h1>
+
+<p style="max-width:900px;margin:25px auto;line-height:1.7;font-size:17px;">
+Noolukunta is a peaceful village located in Kuppam Mandal, Chittoor District.
+The village is known for greenery, unity, and traditional culture.
+</p>
+
+<h2>Contact Support</h2>
+<p style="font-size:20px;margin-top:15px;">
+Instagram:
+<a class="contact-link" href="https://www.instagram.com/noolukunta_official" target="_blank">
+@noolukunta_official
+</a>
+<br><br>
+Call:
+<a class="contact-link" href="tel:6304188650">
+6304188650
+</a>
+</p>
+
+<h2 style="margin-top:30px;">Rate Our Website</h2>
+<div class="stars" id="stars2">
+<span onclick="rate2(1)">★</span>
+<span onclick="rate2(2)">★</span>
+<span onclick="rate2(3)">★</span>
+<span onclick="rate2(4)">★</span>
+<span onclick="rate2(5)">★</span>
+</div>
+
+<div class="signature">Prashanth ❤️</div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<span class="close" onclick="closeImg()">×</span>
+<img id="modalImg">
+</div>
+
+<script>
+function toggleMenu(){
+let m=document.getElementById("menu");
+m.style.display=m.style.display==="block"?"none":"block";
+}
+
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function openPage(id){scrollToSection(id);}
+
+function showImg(img){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=img.src;
+}
+
+function closeImg(){
+document.getElementById("modal").style.display="none";
+}
+
+function rate2(n){
+let stars=document.querySelectorAll("#stars2 span");
+stars.forEach((s,i)=>s.classList.toggle("active", i<n));
+}
+</script>
+
+</body>
+</html>
