@@ -1,0 +1,298 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Village History | Noolukunta</title>
+
+    <meta name="description" content="Discover the history, culture, traditions, education, and community of Noolukunta village.">
+
+    <link rel="stylesheet" href="{% static 'village/css/style.css' %}">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: #203d2c;
+            font-family: Arial, sans-serif;
+        }
+
+        .history-hero {
+            min-height: 390px;
+            padding: 90px 8%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            color: white;
+            background:
+                linear-gradient(
+                    rgba(14, 48, 29, 0.72),
+                    rgba(14, 48, 29, 0.82)
+                ),
+                url("{% static 'village/images/village-road.png' %}")
+                center / cover no-repeat;
+        }
+
+        .history-hero-content {
+            max-width: 850px;
+        }
+
+        .history-label {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .history-hero h1 {
+            margin: 0 0 18px;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.15;
+        }
+
+        .history-hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 17px;
+            line-height: 1.9;
+            color: #f0f5ed;
+        }
+
+        .history-content {
+            max-width: 1150px;
+            margin: auto;
+            padding: 75px 7%;
+        }
+
+        .history-intro {
+            max-width: 780px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .history-intro span {
+            color: #548044;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .history-intro h2 {
+            margin: 14px 0;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #203d2c;
+        }
+
+        .history-intro p {
+            color: #647067;
+            line-height: 1.9;
+        }
+
+        .history-list {
+            display: grid;
+            gap: 28px;
+        }
+
+        .history-block {
+            overflow: hidden;
+            padding: 32px;
+            background: #f5f7ef;
+            border-radius: 18px;
+            border-left: 5px solid #548044;
+            box-shadow: 0 8px 25px rgba(29, 55, 35, 0.06);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .history-block:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(29, 55, 35, 0.12);
+        }
+
+        .history-block h2 {
+            margin: 0 0 18px;
+            color: #203d2c;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+        }
+
+        .history-block p {
+            margin-bottom: 0;
+            color: #526253;
+            font-size: 16px;
+            line-height: 1.9;
+            overflow-wrap: anywhere;
+        }
+
+        .history-image {
+            display: block;
+            width: 100%;
+            max-height: 430px;
+            margin: 0 0 22px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .history-empty {
+            padding: 45px 25px;
+            text-align: center;
+            background: #f5f7ef;
+            border-radius: 18px;
+        }
+
+        .history-empty h2 {
+            margin-top: 0;
+            color: #203d2c;
+        }
+
+        .history-empty p {
+            color: #647067;
+            line-height: 1.8;
+        }
+
+        .history-back-wrapper {
+            margin-top: 45px;
+            text-align: center;
+        }
+
+        .history-back {
+            display: inline-block;
+            padding: 14px 25px;
+            background: #315b35;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 9px;
+            transition: background 0.3s ease;
+        }
+
+        .history-back:hover {
+            background: #203d2c;
+        }
+
+        @media (max-width: 600px) {
+            .history-hero {
+                min-height: 320px;
+                padding: 65px 6%;
+            }
+
+            .history-hero p {
+                font-size: 15px;
+            }
+
+            .history-content {
+                padding: 48px 5%;
+            }
+
+            .history-block {
+                padding: 23px;
+            }
+
+            .history-image {
+                max-height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Village History Hero -->
+    <header class="history-hero">
+        <div class="history-hero-content">
+
+            <span class="history-label">
+                OUR ROOTS • OUR PRIDE
+            </span>
+
+            <h1>Our Noolukunta</h1>
+
+            <p>
+                A place of belonging, traditions, community, and memories.
+                Every village has a story, and every generation adds a new chapter.
+            </p>
+
+        </div>
+    </header>
+
+
+    <!-- Dynamic Village History -->
+    <main class="history-content">
+
+        <div class="history-intro">
+            <span>DISCOVER OUR HERITAGE</span>
+
+            <h2>The Story of Our Village</h2>
+
+            <p>
+                Explore the history, traditions, achievements, and community
+                that make Noolukunta special. The sections below can be
+                managed directly through the Django Admin panel.
+            </p>
+        </div>
+
+
+        <div class="history-list">
+
+            {% for section in sections %}
+
+                <article class="history-block">
+
+                    <h2>{{ section.title }}</h2>
+
+                    {% if section.image %}
+                        <img
+                            class="history-image"
+                            src="{{ section.image.url }}"
+                            alt="{{ section.title }}"
+                            loading="lazy"
+                        >
+                    {% endif %}
+
+                    <p>{{ section.content|linebreaksbr }}</p>
+
+                </article>
+
+            {% empty %}
+
+                <article class="history-empty">
+
+                    <h2>Our Village Story</h2>
+
+                    <p>
+                        Village history details will be published soon.
+                        Please check back for updates about Noolukunta's
+                        culture, traditions, and development.
+                    </p>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Back to Homepage -->
+        <div class="history-back-wrapper">
+
+            <a class="history-back" href="{% url 'home' %}">
+                &larr; Back to Homepage
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

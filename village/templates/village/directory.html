@@ -1,0 +1,456 @@
+
+<style>
+    .directory-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 45px 20px 60px;
+        color: #24452c;
+    }
+
+    .directory-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .directory-header h1 {
+        color: #1b5e20;
+        font-size: clamp(28px, 5vw, 42px);
+        margin-bottom: 12px;
+    }
+
+    .directory-header p {
+        color: #647367;
+        font-size: 16px;
+        line-height: 1.7;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .directory-tools {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 30px auto;
+    }
+
+    .directory-tools input,
+    .directory-tools select {
+        width: 100%;
+        max-width: 350px;
+        padding: 13px 15px;
+        border: 1px solid #c8d6c9;
+        border-radius: 9px;
+        font-size: 15px;
+        background: #fff;
+        color: #24452c;
+        outline: none;
+    }
+
+    .directory-tools input:focus,
+    .directory-tools select:focus {
+        border-color: #2e7d32;
+        box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+    }
+
+    .directory-count {
+        text-align: center;
+        color: #647367;
+        margin-bottom: 22px;
+        font-size: 14px;
+    }
+
+    .places-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    .place-card {
+        background: #fff;
+        border: 1px solid #e2e9df;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(30, 70, 35, 0.07);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        min-width: 0;
+    }
+
+    .place-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(30, 70, 35, 0.13);
+    }
+
+    .place-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        background: #edf3e9;
+    }
+
+    .place-image-placeholder {
+        height: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #e8f5e9, #f6f4e8);
+        font-size: 48px;
+    }
+
+    .place-content {
+        padding: 20px;
+    }
+
+    .place-category {
+        display: inline-block;
+        background: #e8f5e9;
+        color: #25652c;
+        border-radius: 20px;
+        padding: 5px 11px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .place-content h2 {
+        color: #1b5e20;
+        font-size: 21px;
+        line-height: 1.4;
+        margin: 0 0 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .place-description {
+        color: #647367;
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 15px;
+        overflow-wrap: anywhere;
+    }
+
+    .place-detail {
+        font-size: 14px;
+        color: #46584a;
+        line-height: 1.7;
+        margin: 8px 0;
+        overflow-wrap: anywhere;
+    }
+
+    .place-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    .place-button {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 14px;
+        border-radius: 7px;
+        font-size: 13px;
+        font-weight: 700;
+        transition: background 0.2s ease;
+    }
+
+    .map-button {
+        background: #1b5e20;
+        color: #fff !important;
+    }
+
+    .map-button:hover {
+        background: #2e7d32;
+    }
+
+    .contact-button {
+        background: #edf5e9;
+        color: #1b5e20;
+    }
+
+    .contact-button:hover {
+        background: #dcebd9;
+    }
+
+    .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        background: #f6f8f2;
+        padding: 45px 20px;
+        border-radius: 14px;
+        border: 1px dashed #c8d6c9;
+    }
+
+    .empty-state h2 {
+        color: #1b5e20;
+        margin-bottom: 10px;
+    }
+
+    .empty-state p {
+        color: #647367;
+        line-height: 1.7;
+    }
+
+    .back-home {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .back-home a {
+        display: inline-block;
+        background: #1b5e20;
+        color: white;
+        text-decoration: none;
+        padding: 12px 22px;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+    .back-home a:hover {
+        background: #2e7d32;
+    }
+
+    .place-card[hidden],
+    .empty-state[hidden] {
+        display: none !important;
+    }
+
+    @media (max-width: 900px) {
+        .places-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .directory-page {
+            padding: 30px 14px 45px;
+        }
+
+        .places-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .directory-tools {
+            flex-direction: column;
+        }
+
+        .directory-tools input,
+        .directory-tools select {
+            max-width: none;
+        }
+
+        .place-image {
+            height: 190px;
+        }
+    }
+</style>
+
+<section class="directory-page">
+
+    <header class="directory-header">
+        <h1>Village Directory</h1>
+        <p>
+            Explore the important places and facilities in Noolukunta
+            village, including temples, schools, health centers and
+            government services.
+        </p>
+    </header>
+
+    <div class="directory-tools">
+        <input
+            type="search"
+            id="placeSearch"
+            placeholder="Search by place name or details..."
+            aria-label="Search village places"
+        >
+
+        <select id="categoryFilter" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+            <option value="temple">Temples</option>
+            <option value="school">Schools</option>
+            <option value="health">Health Centers</option>
+            <option value="government">Government Offices</option>
+            <option value="water">Water Facilities</option>
+            <option value="other">Other Places</option>
+        </select>
+    </div>
+
+    <p class="directory-count" id="directoryCount" aria-live="polite">
+        Loading village places...
+    </p>
+
+    <div class="places-grid" id="placesGrid">
+
+        {% for place in places %}
+        <article
+            class="place-card"
+            data-name="{{ place.name|lower }}"
+            data-category="{{ place.category|lower }}"
+            data-search="{{ place.name|lower }} {{ place.description|lower }} {{ place.address|lower }} {{ place.category|lower }}"
+        >
+
+            {% if place.image %}
+                <img
+                    class="place-image"
+                    src="{{ place.image.url }}"
+                    alt="{{ place.name }}"
+                    loading="lazy"
+                >
+            {% else %}
+                <div class="place-image-placeholder" aria-hidden="true">
+                    {% if place.category == "TEMPLE" %}
+                        🛕
+                    {% elif place.category == "SCHOOL" %}
+                        🏫
+                    {% elif place.category == "HEALTH" %}
+                        🏥
+                    {% elif place.category == "GOVERNMENT" %}
+                        🏢
+                    {% elif place.category == "WATER" %}
+                        💧
+                    {% else %}
+                        📍
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="place-content">
+
+                <span class="place-category">
+                    {{ place.get_category_display }}
+                </span>
+
+                <h2>{{ place.name }}</h2>
+
+                {% if place.description %}
+                    <p class="place-description">
+                        {{ place.description }}
+                    </p>
+                {% endif %}
+
+                {% if place.address %}
+                    <p class="place-detail">
+                        <strong>📍 Address:</strong>
+                        {{ place.address }}
+                    </p>
+                {% endif %}
+
+                {% if place.contact_number %}
+                    <p class="place-detail">
+                        <strong>📞 Contact:</strong>
+                        {{ place.contact_number }}
+                    </p>
+                {% endif %}
+
+                <div class="place-actions">
+
+                    {% if place.contact_number %}
+                        <a
+                            class="place-button contact-button"
+                            href="tel:{{ place.contact_number }}"
+                        >
+                            Call Now
+                        </a>
+                    {% endif %}
+
+                    {% if place.map_link %}
+                        <a
+                            class="place-button map-button"
+                            href="{{ place.map_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            📍 Get Directions
+                        </a>
+                    {% else %}
+                        <a
+                            class="place-button map-button"
+                            href="https://www.google.com/maps/search/?api=1&query={{ place.name|add:' Noolukunta village '|add:place.address|urlencode }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            📍 Find on Google Maps
+                        </a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </article>
+
+        {% empty %}
+            <div class="empty-state" id="emptyState">
+                <h2>Village Directory Coming Soon</h2>
+                <p>
+                    Village places and facilities will be listed here soon.
+                    Please visit again later.
+                </p>
+            </div>
+        {% endfor %}
+
+        <div class="empty-state" id="noResults" hidden>
+            <h2>No Places Found</h2>
+            <p>
+                Try another search term or choose a different category.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="back-home">
+        <a href="{% url 'home' %}">← Back to Home</a>
+    </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("placeSearch");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const cards = Array.from(document.querySelectorAll(".place-card"));
+    const countLabel = document.getElementById("directoryCount");
+    const noResults = document.getElementById("noResults");
+
+    function filterPlaces() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        const selectedCategory = categoryFilter.value;
+        let visibleCount = 0;
+
+        cards.forEach(function (card) {
+            const searchData = card.dataset.search || "";
+            const category = card.dataset.category || "";
+
+            const matchesSearch = searchData.includes(searchText);
+            const matchesCategory =
+                selectedCategory === "all" ||
+                category === selectedCategory;
+
+            const isVisible = matchesSearch && matchesCategory;
+
+            card.hidden = !isVisible;
+
+            if (isVisible) {
+                visibleCount++;
+            }
+        });
+
+        noResults.hidden =
+            visibleCount > 0 || cards.length === 0;
+
+        if (cards.length === 0) {
+            countLabel.textContent =
+                "No village places have been added yet.";
+        } else {
+            countLabel.textContent =
+                "Showing " + visibleCount +
+                " of " + cards.length + " places";
+        }
+    }
+
+    searchInput.addEventListener("input", filterPlaces);
+    categoryFilter.addEventListener("change", filterPlaces);
+
+    filterPlaces();
+});
+</script>
